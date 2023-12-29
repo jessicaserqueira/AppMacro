@@ -21,6 +21,8 @@ struct ContentView: View {
             #stringify({
                 print(123)
             }, {
+                print(90)
+            }, {
                 print(85)
             })
         }

@@ -2,25 +2,32 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftCompilerPlugin
 
-public enum CompilationConfiguration {
-    case debug, beta, release
-}
-
 public struct StringifyMacro: ExpressionMacro {
     public static func expansion(
         of node: some SwiftSyntax.FreestandingMacroExpansionSyntax,
         in context: some SwiftSyntaxMacros.MacroExpansionContext
     ) throws -> SwiftSyntax.ExprSyntax {
-    
-  
-        let debug = node.argumentList.first?.expression ?? ExprSyntax.init(stringLiteral: "")
-        let release = node.argumentList.last?.expression ?? ExprSyntax.init(stringLiteral: "")
-
-
+        
+        var arguments = [ExprSyntax]()
+        for argument in node.argumentList {
+            arguments.append(argument.expression)
+            if arguments.count == 3 { break }
+        }
+        
+        guard node.argumentList.count >= 3 else {
+            fatalError("Expected at least 3 arguments (DEBUG, BETA, RELEASE)")
+        }
+        
+        let debug = arguments[0]
+        let beta = arguments[1]
+        let release = arguments[2]
+        
         let code = """
                 {
                 #if DEBUG
                 \(debug)()
+                #elseif BETA
+                \(beta)()
                 #elseif RELEASE
                 \(release)()
                 #endif
@@ -28,45 +35,6 @@ public struct StringifyMacro: ExpressionMacro {
                 """
         
         return "\(raw: code)"
-    }
-}
-
-public struct DebugStringifyMacro: ExpressionMacro {
-    public static func expansion(
-        of node: some SwiftSyntax.FreestandingMacroExpansionSyntax,
-        in context: some SwiftSyntaxMacros.MacroExpansionContext
-    ) throws -> SwiftSyntax.ExprSyntax {
-        #if DEBUG
-        return node.argumentList.first?.expression ?? ExprSyntax.init(stringLiteral: "")
-        #else
-        return ExprSyntax.init(stringLiteral: "")
-        #endif
-    }
-}
-
-public struct BetaStringifyMacro: ExpressionMacro {
-    public static func expansion(
-        of node: some SwiftSyntax.FreestandingMacroExpansionSyntax,
-        in context: some SwiftSyntaxMacros.MacroExpansionContext
-    ) throws -> SwiftSyntax.ExprSyntax {
-        #if BETA
-        return node.argumentList.first?.expression ?? ExprSyntax.init(stringLiteral: "")
-        #else
-        return ExprSyntax.init(stringLiteral: "")
-        #endif
-    }
-}
-
-public struct ReleaseStringifyMacro: ExpressionMacro {
-    public static func expansion(
-        of node: some SwiftSyntax.FreestandingMacroExpansionSyntax,
-        in context: some SwiftSyntaxMacros.MacroExpansionContext
-    ) throws -> SwiftSyntax.ExprSyntax {
-        #if RELEASE
-        return node.argumentList.first?.expression ?? ExprSyntax.init(stringLiteral: "")
-        #else
-        return ExprSyntax.init(stringLiteral: "")
-        #endif
     }
 }
 

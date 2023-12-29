@@ -12,7 +12,7 @@
 		4C3597FA2B3E017700A2B5CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3597F92B3E017700A2B5CA /* Assets.xcassets */; };
 		4C3597FD2B3E017700A2B5CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3597FC2B3E017700A2B5CA /* Preview Assets.xcassets */; };
 		4C3598052B3E019D00A2B5CA /* Testemacro in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3598042B3E019D00A2B5CA /* Testemacro */; };
-		4C3598072B3E019D00A2B5CA /* TestemacroClient in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3598062B3E019D00A2B5CA /* TestemacroClient */; };
+		A4461F9E2B3EFD2A00F5DE34 /* TestemacroClient in Frameworks */ = {isa = PBXBuildFile; productRef = A4461F9D2B3EFD2A00F5DE34 /* TestemacroClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3598072B3E019D00A2B5CA /* TestemacroClient in Frameworks */,
+				A4461F9E2B3EFD2A00F5DE34 /* TestemacroClient in Frameworks */,
 				4C3598052B3E019D00A2B5CA /* Testemacro in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +97,7 @@
 			name = TesteMacroApp;
 			packageProductDependencies = (
 				4C3598042B3E019D00A2B5CA /* Testemacro */,
-				4C3598062B3E019D00A2B5CA /* TestemacroClient */,
+				A4461F9D2B3EFD2A00F5DE34 /* TestemacroClient */,
 			);
 			productName = TesteMacroApp;
 			productReference = 4C3597F22B3E017600A2B5CA /* TesteMacroApp.app */;
@@ -128,7 +128,7 @@
 			);
 			mainGroup = 4C3597E92B3E017600A2B5CA;
 			packageReferences = (
-				4C3598032B3E019D00A2B5CA /* XCLocalSwiftPackageReference "../Testemacro" */,
+				A4461F9A2B3EFD2A00F5DE34 /* XCLocalSwiftPackageReference "../Testemacro2" */,
 			);
 			productRefGroup = 4C3597F32B3E017600A2B5CA /* Products */;
 			projectDirPath = "";
@@ -367,9 +367,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		4C3598032B3E019D00A2B5CA /* XCLocalSwiftPackageReference "../Testemacro" */ = {
+		A4461F9A2B3EFD2A00F5DE34 /* XCLocalSwiftPackageReference "../Testemacro2" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../Testemacro;
+			relativePath = ../Testemacro2;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -378,7 +378,7 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Testemacro;
 		};
-		4C3598062B3E019D00A2B5CA /* TestemacroClient */ = {
+		A4461F9D2B3EFD2A00F5DE34 /* TestemacroClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TestemacroClient;
 		};

@@ -16,27 +16,31 @@ final class TestemacroTests: XCTestCase {
         #if canImport(TestemacroMacros)
         assertMacroExpansion(
             """
-            #stringify(a + b)
+            #stringify({
+                print(debug)
+            }, {
+                print(beta)
+            }, {
+                print(release)
+            })
             """,
             expandedSource: """
-            (a + b, "a + b")
+            {
+                #if DEBUG
+                {
+                    print(debug)
+                }()
+                #elseif BETA
+                {
+                    print(beta)
+                }()
+                #elseif RELEASE
+                {
+                    print(release)
+                }()
+                #endif
+            }()
             """,
-            macros: testMacros
-        )
-        #else
-        throw XCTSkip("macros are only supported when running tests for the host platform")
-        #endif
-    }
-
-    func testMacroWithStringLiteral() throws {
-        #if canImport(TestemacroMacros)
-        assertMacroExpansion(
-            #"""
-            #stringify("Hello, \(name)")
-            """#,
-            expandedSource: #"""
-            ("Hello, \(name)", #""Hello, \(name)""#)
-            """#,
             macros: testMacros
         )
         #else
